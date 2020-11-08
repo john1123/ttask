@@ -57,6 +57,11 @@ class Tasks extends Controller
         $taskId = array_key_exists('id', $arParameters) ? intval($arParameters['id']) : 0;
         $username = array_key_exists('username', $arParameters) ? $arParameters['username'] : '';
         if (strlen($username) > 0) {
+            if ($taskId > 0 && !Session::issetVariable('user')) {
+                $this->alert('Не достаточно прав', 'danger');
+                $this->redirect('tasks', 'list');
+            }
+            
             $username = preg_replace('/\W/', '', $username);
             $username = substr($username, 0, 32);
 
@@ -100,6 +105,11 @@ class Tasks extends Controller
     }
     function actionDelete($arParameters)
     {
+        if (!Session::issetVariable('user')) {
+            $this->alert('Не достаточно прав', 'danger');
+            $this->redirect('tasks', 'list');
+        }
+        
         $taskId = array_key_exists('id', $arParameters) ? intval($arParameters['id']) : 0;
         if ( $taskId > 0 ) {
             $tasksModel = new TasksModel();
