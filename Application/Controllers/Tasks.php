@@ -79,14 +79,12 @@ class Tasks extends Controller
             $this->alert('Задача сохранена');
             $this->redirect('tasks', 'list');
         }
-        //
-        
+        // Вывод формы
         $arTask = [];
         $this->title = 'Создать задачу';
         if ( $taskId > 0 ) {
             $taskId = intval($arParameters['id']);
             $this->title = 'Редактировать задачу';
-            //$tasksModel = new TasksModel();
             $arTask = $tasksModel->get($taskId);
             if (!is_array($arTask)) {
                 $arTask = [];

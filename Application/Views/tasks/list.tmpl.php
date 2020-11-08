@@ -1,4 +1,7 @@
 <?php
+
+use Framework\Session;
+
     // $page - номер текущей страницы
     $maxPage = ceil($tasksCount/PAGE_SIZE); // максимально существующая страница
     $sort = $sortField . '_' . $sortDir;
@@ -46,10 +49,12 @@
       <td><?= $arTask['username'] ?></td>
       <td><?= $arTask['email'] ?></td>
       <td><?= $arTask['task'] ?></td>
+      <?php if ( Session::issetVariable('user')) { ?>
       <td><a href="?controller=tasks&action=edit&id=<?= $arTask['id'] ?>">
               <img src="img/edit.svg" alt="Редактировать" title="Редактировать" height="24" width="24"/>
           </a>
       </td>
+      <?php } ?>
     </tr>
     <?php } ?>
   </tbody>
@@ -66,9 +71,11 @@
             <a class="page-link" href="?controller=tasks&action=list&page=<?= $i ?>"><?= $i ?><?= $page == $i ? ' <span class="sr-only">(current)</span>' : '' ?></a>
         </li>
 <?php } ?>
+        <?php if ( Session::issetVariable('user')) { ?>
         <li class="page-item<?= $page == $maxPage ? ' disabled' : ''?>">
             <a class="page-link" href="?controller=tasks&action=list&page=<?= $page+1 ?>">&gt;</a>
         </li>
+        <?php } ?>
     </ul>
 </nav>
 <?php } ?>
@@ -77,7 +84,7 @@
 
 <p>&nbsp;</p>
 <p>
-    <a href="?controller=tasks&action=edit&id=0" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+    <a href="?controller=tasks&action=edit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
         Создать задачу
     </a>
 </p>

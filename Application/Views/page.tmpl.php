@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+
+use Framework\Session;
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,8 +16,8 @@
 <nav class="navbar fixed-top navbar-light bg-light">
   <a class="navbar-brand" href="index.php">Задачи</a>
       <span class="navbar-text">
-          <?php if ( Framework\Session::issetVariable('user')) { ?>
-          Пользователь: <b><?= Framework\Session::get('user')?></b> [<a href="?controller=users&action=logout">Выйти</a>]
+          <?php if ( Session::issetVariable('user')) { ?>
+          Пользователь: <b><?= Session::get('user')?></b> [<a href="?controller=users&action=logout">Выйти</a>]
           <?php } else { ?>
           Анонимный пользователь [<a href="?controller=users&action=login">Войти</a>]
           <?php } ?>
