@@ -53,13 +53,40 @@ class Tasks extends Controller
     }
     function actionEdit($arParameters)
     {
+        $tasksModel = new TasksModel();
+        $taskId = array_key_exists('id', $arParameters) ? intval($arParameters['id']) : 0;
+        $username = array_key_exists('username', $arParameters) ? $arParameters['username'] : '';
+        if (strlen($username) > 0) {
+            $username = preg_replace('/\W/', '', $username);
+            $username = substr($username, 0, 32);
+
+            $email = array_key_exists('email', $arParameters) ? $arParameters['email'] : '';
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 255) {
+                $this->alert('Ошибка в адресе E-mail', 'danger');
+                $this->redirect('tasks', 'list');
+            }
+            
+            $task = array_key_exists('task', $arParameters) ? $arParameters['task'] : '';
+            $task = htmlentities($task);
+            
+            $tasksModel->save([
+                'id' => $taskId,
+                'username' => $username,
+                'email' => $email,
+                'task' => $task,
+                'done' => array_key_exists('done', $arParameters) ? $arParameters['done'] : '',
+            ]);
+            $this->alert('Задача сохранена');
+            $this->redirect('tasks', 'list');
+        }
+        //
+        
         $arTask = [];
         $this->title = 'Создать задачу';
-        $taskId = array_key_exists('id', $arParameters) ? intval($arParameters['id']) : 0;
         if ( $taskId > 0 ) {
             $taskId = intval($arParameters['id']);
             $this->title = 'Редактировать задачу';
-            $tasksModel = new TasksModel();
+            //$tasksModel = new TasksModel();
             $arTask = $tasksModel->get($taskId);
             if (!is_array($arTask)) {
                 $arTask = [];
