@@ -5,19 +5,19 @@
     <div class="form-group row">
         <label for="taskUsername" class="col-sm-2 col-form-label">Имя пользователя</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="taskUsername" name="username" value="<?= $username ?>"/>
+            <input type="text" class="form-control" id="taskUsername" name="username" value="<?= $username ?>" required="required"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="taskEmail" class="col-sm-2 col-form-label">E-mail</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" id="taskEmail" name="email"  value="<?= $email ?>"/>
+            <input type="email" class="form-control" id="taskEmail" name="email"  value="<?= $email ?>" required="required"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="taskText" class="col-sm-2 col-form-label">Текст задачи</label>
         <div class="col-sm-10">
-            <textarea id="taskText" class="form-control" name="task" rows="5" cols="10"><?= $task ?></textarea>
+            <textarea id="taskText" class="form-control" name="task" rows="5" cols="10" required="required"><?= $task ?></textarea>
         </div>
     </div>
     <div class="form-group row">
