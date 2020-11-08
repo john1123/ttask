@@ -1,6 +1,6 @@
 <?php
 
-// Данные дазы данных
+// Данные базы данных
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'ttask');
 define('DB_USER', 'root');
