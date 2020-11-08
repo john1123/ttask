@@ -1,13 +1,41 @@
 <?php
     // $page - номер текущей страницы
     $maxPage = ceil($tasksCount/PAGE_SIZE); // максимально существующая страница
+    $sort = $sortField . '_' . $sortDir;
 ?>
 <table class="table table-sm">
   <thead>
     <tr>
-        <th scope="col"><a href="#">Имя пользователя</a></th>
-        <th scope="col"><a href="#">E-mail</a></th>
-        <th scope="col"><a href="#">Текст задачи</a></th>
+        <th scope="col">
+            <a href="?controller=tasks&action=list&sort=username">
+                Имя пользователя
+                <?php if ($sort == 'username_asc') { ?>
+                <img src="img/up-arrow.svg" width="16" height="16"/>
+                <?php } if ($sort == 'username_desc') { ?>
+                <img src="img/down-arrow.svg" width="16" height="16"/>
+                <?php } ?>
+            </a>
+        </th>
+        <th scope="col">
+            <a href="?controller=tasks&action=list&sort=email">
+                E-mail
+                <?php if ($sort == 'email_asc') { ?>
+                <img src="img/up-arrow.svg" width="16" height="16"/>
+                <?php } if ($sort == 'email_desc') { ?>
+                <img src="img/down-arrow.svg" width="16" height="16"/>
+                <?php } ?>
+            </a>
+        </th>
+        <th scope="col">
+            <a href="?controller=tasks&action=list&sort=task">
+                Текст задачи
+                <?php if ($sort == 'task_asc') { ?>
+                <img src="img/up-arrow.svg" width="16" height="16"/>
+                <?php } if ($sort == 'task_desc') { ?>
+                <img src="img/down-arrow.svg" width="16" height="16"/>
+                <?php } ?>
+            </a>
+        </th>
     </tr>
   </thead>
   <tbody>
