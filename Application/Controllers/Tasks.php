@@ -54,9 +54,11 @@ class Tasks extends Controller
     function actionEdit($arParameters)
     {
         $arTask = [];
+        $this->title = 'Создать задачу';
         $taskId = array_key_exists('id', $arParameters) ? intval($arParameters['id']) : 0;
         if ( $taskId > 0 ) {
             $taskId = intval($arParameters['id']);
+            $this->title = 'Редактировать задачу';
             $tasksModel = new TasksModel();
             $arTask = $tasksModel->get($taskId);
             if (!is_array($arTask)) {
@@ -70,5 +72,17 @@ class Tasks extends Controller
             'task' => array_key_exists('task', $arTask) ? $arTask['task'] : '', 
             'done' => array_key_exists('done', $arTask) ? $arTask['done'] : '', 
         ]);
+    }
+    function actionDelete($arParameters)
+    {
+        $taskId = array_key_exists('id', $arParameters) ? intval($arParameters['id']) : 0;
+        if ( $taskId > 0 ) {
+            $tasksModel = new TasksModel();
+            $tasksModel->delete($taskId);
+            $this->alert('Задача успешно удалена');
+        } else {
+            $this->alert('Ошибка при удалении задачи', 'danger');
+        }
+        $this->redirect('tasks', 'list');
     }
 }

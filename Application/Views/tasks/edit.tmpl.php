@@ -34,7 +34,7 @@
     <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Сохранить</button>
-            <a href="?controller=tasks&action=delete&id=0" onclick ="return confirm('Удалить задачу?');" class="btn btn-outline-secondary" role="button" aria-pressed="true">Удалить</a>
+            <?php if ($id > 0) { ?><a href="?controller=tasks&action=delete&id=<?= $id ?>" onclick ="return confirm('Удалить задачу?');" class="btn btn-outline-secondary" role="button" aria-pressed="true">Удалить</a><?php } ?>
         </div>
     </div>
 </form>

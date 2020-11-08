@@ -32,4 +32,10 @@ class Tasks extends Model
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+    public function delete($taskId)
+    {
+        $stmt = $this->getConnection()->prepare( 'DELETE FROM `tasks` WHERE `id`=?' );
+        $stmt->bindParam(1, $taskId, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }
