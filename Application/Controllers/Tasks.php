@@ -51,8 +51,24 @@ class Tasks extends Controller
             'sortDir' => $sortDir,
         ]);
     }
-    function actionEdit($id=0)
+    function actionEdit($arParameters)
     {
-        return View::render('tasks/edit.tmpl.php');
+        $arTask = [];
+        $taskId = array_key_exists('id', $arParameters) ? intval($arParameters['id']) : 0;
+        if ( $taskId > 0 ) {
+            $taskId = intval($arParameters['id']);
+            $tasksModel = new TasksModel();
+            $arTask = $tasksModel->get($taskId);
+            if (!is_array($arTask)) {
+                $arTask = [];
+            }
+        }
+        return View::render('tasks/edit.tmpl.php', [
+            'id' => $taskId, 
+            'username' => array_key_exists('username', $arTask) ? $arTask['username'] : '', 
+            'email' => array_key_exists('email', $arTask) ? $arTask['email'] : '', 
+            'task' => array_key_exists('task', $arTask) ? $arTask['task'] : '', 
+            'done' => array_key_exists('done', $arTask) ? $arTask['done'] : '', 
+        ]);
     }
 }

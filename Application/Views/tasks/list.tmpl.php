@@ -36,6 +36,8 @@
                 <?php } ?>
             </a>
         </th>
+        <th scope="col">
+        </th>
     </tr>
   </thead>
   <tbody>
@@ -44,6 +46,10 @@
       <td><?= $arTask['username'] ?></td>
       <td><?= $arTask['email'] ?></td>
       <td><?= $arTask['task'] ?></td>
+      <td><a href="?controller=tasks&action=edit&id=<?= $arTask['id'] ?>">
+              <img src="img/edit.svg" alt="Редактировать" title="Редактировать" height="24" width="24"/>
+          </a>
+      </td>
     </tr>
     <?php } ?>
   </tbody>
@@ -69,6 +75,7 @@
 
 Всего задач: <?= $tasksCount ?>
 
+<p>&nbsp;</p>
 <p>
     <a href="?controller=tasks&action=edit&id=0" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
         Создать задачу

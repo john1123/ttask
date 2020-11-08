@@ -25,4 +25,11 @@ class Tasks extends Model
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function get($taskId)
+    {
+        $stmt = $this->getConnection()->prepare( 'SELECT `id`, `username`, `email`, `task`, `done` FROM `tasks` WHERE `id`=?' );
+        $stmt->bindParam(1, $taskId, \PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }
