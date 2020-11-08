@@ -1,0 +1,7 @@
+tr.done td {
+    text-decoration: line-through;
+    color: #777;
+}
+.content {
+    margin-top: 75px;
+}
