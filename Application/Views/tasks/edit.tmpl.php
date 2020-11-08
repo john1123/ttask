@@ -5,13 +5,14 @@
     <div class="form-group row">
         <label for="taskUsername" class="col-sm-2 col-form-label">Имя пользователя</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="taskUsername" name="username" value="<?= $username ?>" required="required"/>
+            <input type="text" class="form-control" id="taskUsername" name="username" value="<?= $username ?>" required="required" maxlength="32" aria-describedby="usernameHelp"/>
+            <small id="usernameHelp" class="form-text text-muted">Имя пользователя может содержать только буквы и цифры</small>
         </div>
     </div>
     <div class="form-group row">
         <label for="taskEmail" class="col-sm-2 col-form-label">E-mail</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" id="taskEmail" name="email"  value="<?= $email ?>" required="required"/>
+            <input type="email" class="form-control" id="taskEmail" name="email"  value="<?= $email ?>" required="required" maxlength="255"/>
         </div>
     </div>
     <div class="form-group row">
