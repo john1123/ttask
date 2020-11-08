@@ -5,6 +5,7 @@ namespace Application\Controllers;
 use Application\Models\Tasks as TasksModel;
 use Framework\View;
 use Framework\Controller;
+use Framework\Session;
 
 class Tasks extends Controller
 {
@@ -16,7 +17,12 @@ class Tasks extends Controller
     function actionList($arParameters)
     {
         $this->title = 'Список задач';
-        $pageNumber = array_key_exists('page', $arParameters) ? intval($arParameters['page']) : 1;
+
+        if ( array_key_exists('page', $arParameters) ) {
+            Session::set('page', intval($arParameters['page']));
+        }
+        $pageNumber = Session::get('page', 1);
+        
         $tasksModel = new TasksModel();
         $arTasksPage = $tasksModel->getTasksPage($pageNumber);
         return View::render('tasks/list.tmpl.php', [
