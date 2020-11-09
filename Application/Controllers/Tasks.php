@@ -57,7 +57,7 @@ class Tasks extends Controller
         $username = array_key_exists('username', $arParameters) ? $arParameters['username'] : '';
         if (strlen($username) > 0) {
             if ($taskId > 0 && !Session::issetVariable('user')) {
-                $this->alert('Не достаточно прав', 'danger');
+                $this->alert('Недостаточно прав', 'danger');
                 $this->redirect('tasks', 'list');
             }
             
@@ -105,7 +105,7 @@ class Tasks extends Controller
     function actionDelete($arParameters)
     {
         if (!Session::issetVariable('user')) {
-            $this->alert('Не достаточно прав', 'danger');
+            $this->alert('Недостаточно прав', 'danger');
             $this->redirect('tasks', 'list');
         }
         
