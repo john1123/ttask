@@ -31,13 +31,12 @@ class Tasks extends Controller
             $sortField = in_array($arParameters['sort'], ['id', 'username', 'email', 'task'])
                     ? $arParameters['sort']
                     : 'id';
-            $sortSession = Session::get('sort', ($sortField . '_' . $sortDir));
-                $sortSessionField = Session::get('sortField');
-                $sortSessionDir = Session::get('sortDir');
-                if ($sortSessionField == $sortField) {
-                    $sortDir = $sortSessionDir == 'asc' ? 'desc' : 'asc';
-                }
-            Session::set('sortField', $sortField);
+            $sortSessionField = Session::get('sortField');
+            $sortSessionDir = Session::get('sortDir');
+            if ($sortSessionField == $sortField) {
+                $sortDir = $sortSessionDir == 'asc' ? 'desc' : 'asc';
+            }
+            //Session::set('sortField', $sortField);
             Session::set('sortDir', $sortDir);
         }
         
