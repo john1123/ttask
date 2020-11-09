@@ -39,8 +39,10 @@ use Framework\Session;
                 <?php } ?>
             </a>
         </th>
+        <?php if ( Session::issetVariable('user')) { ?>
         <th scope="col">
         </th>
+        <?php } ?>
     </tr>
   </thead>
   <tbody>
@@ -71,11 +73,9 @@ use Framework\Session;
             <a class="page-link" href="?controller=tasks&action=list&page=<?= $i ?>"><?= $i ?><?= $page == $i ? ' <span class="sr-only">(current)</span>' : '' ?></a>
         </li>
 <?php } ?>
-        <?php if ( Session::issetVariable('user')) { ?>
         <li class="page-item<?= $page == $maxPage ? ' disabled' : ''?>">
             <a class="page-link" href="?controller=tasks&action=list&page=<?= $page+1 ?>">&gt;</a>
         </li>
-        <?php } ?>
     </ul>
 </nav>
 <?php } ?>
